@@ -31,8 +31,11 @@ useEffect(() => {
         <>
             <input id='checkbox' type="checkbox" value={checked} onChange={handleChange} />
             <label htmlFor="checkbox">show Only hot sale</label>
-            <ul>
+            <ul>                
                 {products.map((product) => (
+                    // 리스트의 자식 요소들은 유일한 key를 가지고 있어야 한다.
+                    // 배열 안의 위치가 변했을 때도 key를 가지고 판단해서 업데이트 해야되는 지 
+                    // 아닌지를 확인한다.
                     <li key={product.id}>
                         <article>
                             <h3>{product.name}</h3>
