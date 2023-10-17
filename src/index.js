@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import AppXY from "./AppXY";
+import AppMentors from "./AppMentors";
+// import AppXY from "./AppXY";
 // import AppProfile from "./AppProfile";
 // import AppCounter from "./AppCounter";
 // import AppProducts from "./AppProducts";
@@ -10,7 +11,7 @@ import AppXY from "./AppXY";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppXY />
+    <AppMentors />
   </React.StrictMode>
 );
 
