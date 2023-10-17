@@ -58,7 +58,9 @@ export default function AppMentor() {
             onClick={() => {
                 const name = prompt(`what's your mentor's name?`)
                 //setPerson(prev => ({prev.name === name ? person.name = prev.name : person.name = name  }))
-                setPerson((person) => ({...person, mentor : {...person.mentor, name : name}}))
+                setPerson((person) => ({...person, mentor : {
+                    ...person.mentor, name : name
+                }}))
             }}
           >
             멘토 이름 바꾸기

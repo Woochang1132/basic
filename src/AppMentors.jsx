@@ -38,13 +38,14 @@ export default function AppMentor() {
                 // setPerson(prev => ({prev.name === name ? person.name = prev.name : person.name = name  }))
                 // 배열에 있는 요소이고 객체가 2개중에서 어떤 이름을 바꾸고 싶은 지 알아야 한다.
                 // 달라진 점 : 객체가 아닌 배열이다.
-                setPerson(person => ({...person, mentors : person.mentors.map(mentor => {
+                setPerson((person) => ({...person, mentors : person.mentors.map((mentor) => {
+                  // 배열의 요소는 (mentor)에 담겨서 순환된다.
                   if(mentor.name === prev){
                     return {...mentor, name : current}
-                  }else{
-                    return mentor;
                   }
+                  return mentor;
                 })}))
+
             }}
           >
             멘토 이름 바꾸기
