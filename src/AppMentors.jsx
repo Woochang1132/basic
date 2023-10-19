@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useCallback, useMemo, useReducer, memo} from 'react';
 import personReducer from './reducer/person-reducer'
 
 export default function AppMentor() {
@@ -7,30 +7,31 @@ export default function AppMentor() {
    // dispatch, personReducer를 호출하는 용도
    const [person, dispatch] = useReducer(personReducer, initialPerson); 
    
-   const handleUpdate = () => {
-      
-        const prev = prompt(`누구의 이름이 바꾸고 싶은가요?`);
-        const current = prompt(`이름을 무엇으로 바꾸고 싶은가요?`);
-        // setPerson(prev => ({prev.name === name ? person.name = prev.name : person.name = name  }))
-        // 배열에 있는 요소이고 객체가 2개중에서 어떤 이름을 바꾸고 싶은 지 알아야 한다.
-        // 달라진 점 : 객체가 아닌 배열이다.
-        dispatch({type: 'updated', prev, current})
-    };
+   const handleUpdate = useCallback(() => {
+    const prev = prompt(`누구의 이름이 바꾸고 싶은가요?`);
+    const current = prompt(`이름을 무엇으로 바꾸고 싶은가요?`);
+    // setPerson(prev => ({prev.name === name ? person.name = prev.name : person.name = name  }))
+    // 배열에 있는 요소이고 객체가 2개중에서 어떤 이름을 바꾸고 싶은 지 알아야 한다.
+    // 달라진 점 : 객체가 아닌 배열이다.
+    dispatch({type: 'updated', prev, current})
+   },[])
 
-    const handleAdd = () => {
-        const name = prompt(`추가할 멘토의 이름은 무엇인가요?`);
-        const title = prompt(`멘토의 직책은 무엇인가요?`);
-        dispatch({type : 'added', name , title})
-    }
+    const handleAdd = useCallback(() => {
+      const name = prompt(`추가할 멘토의 이름은 무엇인가요?`);
+      const title = prompt(`멘토의 직책은 무엇인가요?`);
+      dispatch({type : 'added', name , title})
+    },[])
 
-    const handleDelete = () => {
-        const name = prompt(`누구의 이름을 삭제하고 싶은가요?!`);
-        //const current = prompt(`이름을 무엇으로 바꾸고 싶은가요?`);
-        // setPerson(prev => ({prev.name === name ? person.name = prev.name : person.name = name  }))
-        // 배열에 있는 요소이고 객체가 2개중에서 어떤 이름을 바꾸고 싶은 지 알아야 한다.
-        // 해당 조건을 충족하는 친구들로 다시 배열이 구성된다.
-        dispatch({type : 'deleted', name})
-    }
+    
+
+    const handleDelete = useCallback(() => {
+      const name = prompt(`누구의 이름을 삭제하고 싶은가요?!`);
+      //const current = prompt(`이름을 무엇으로 바꾸고 싶은가요?`);
+      // setPerson(prev => ({prev.name === name ? person.name = prev.name : person.name = name  }))
+      // 배열에 있는 요소이고 객체가 2개중에서 어떤 이름을 바꾸고 싶은 지 알아야 한다.
+      // 해당 조건을 충족하는 친구들로 다시 배열이 구성된다.
+      dispatch({type : 'deleted', name})
+    }, [])
     
     return (
         <div>
@@ -47,23 +48,11 @@ export default function AppMentor() {
                   </li>
               ))}
           </ul> 
-          <button
-            onClick={handleUpdate}
-          >
-            멘토 이름 바꾸기
-          </button>
+          <Button text='멘토 이름 바꾸기' onClick={handleUpdate}></Button>
 
-          <button
-            onClick={handleAdd}
-          >
-            멘토 추가하기
-          </button>
+          <Button text='멘토 추가하기' onClick={handleAdd}></Button>
 
-          <button
-            onClick={handleDelete}
-          >
-            멘토 삭제하기
-          </button>
+          <Button text='멘토 삭제하기' onClick={handleDelete}></Button>
         </div>
     );
 }
@@ -86,3 +75,28 @@ const initialPerson = {
 };
 
 
+const Button = memo(({text, onClick}) => {
+  console.log("Button", text, 're-rendering');
+  const result = useMemo(() => calculateSomething(), []) // 한 번만 실행되고, 메모가 된 이후에는 계산하는 로직 실행하지 X, 
+  // [text] , text가 변경되면 다시금 해당, function이 호출된다.
+  return (
+    <button 
+    onClick={onClick}
+    style={{
+      backgroundColor: 'black',
+      color : 'white',
+      borderRadius : '20px',
+      margin: '0.4rem'
+    }}
+    >
+      {`${text} ${result}`}
+    </button>
+  );
+})
+
+function calculateSomething(){
+  for(let i = 0; i < 10000; i++){
+    console.log('!');
+  }
+  return 10;
+}
