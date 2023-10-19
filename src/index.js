@@ -7,16 +7,16 @@ import reportWebVitals from "./reportWebVitals";
 // import AppWrap from "./AppWrap";
 // import AppForm from "./AppForm";
 // import AppMentorsImmer from "./AppMentorsImmer";
-import AppMentors from "./AppMentors";
+// import AppMentors from "./AppMentors";
 // import AppXY from "./AppXY";
 // import AppProfile from "./AppProfile";
 // import AppCounter from "./AppCounter";
-// import AppProducts from "./AppProducts";
+import AppProducts from "./AppProducts";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppMentors />
+    <AppProducts />
   </React.StrictMode>
 );
 
