@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import AppWrap from "./AppWrap";
+import AppTheme from "./AppTheme";
 
+// import AppWrap from "./AppWrap";
 // import AppForm from "./AppForm";
 // import AppMentorsImmer from "./AppMentorsImmer";
 // import AppMentors from "./AppMentors";
@@ -15,7 +16,7 @@ import AppWrap from "./AppWrap";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppWrap />
+    <AppTheme />
   </React.StrictMode>
 );
 
