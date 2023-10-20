@@ -1,8 +1,9 @@
 import "./App.css";
+// import "./index.css";
 import Button1 from "./components/Button1";
 import Button2 from "./components/Button2";
 import styled, { css } from "styled-components";
-import TailwindComponent from "./components/TailwindComponent";
+import TailwindComponent from "../src/TailwindComponent";
 
 const Container = styled.div`
   display: flex;
