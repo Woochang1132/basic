@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import AppClass from "./AppClass";
+//import AppClass from "./AppClass";
+import App from "./App";
 // import AppTheme from "./AppTheme";
 
 // import AppWrap from "./AppWrap";
@@ -17,7 +18,7 @@ import AppClass from "./AppClass";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppClass />
+    <App />
   </React.StrictMode>
 );
 
